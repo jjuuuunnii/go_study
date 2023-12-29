@@ -11,8 +11,10 @@ func main() {
 	//Variable3()
 	//Const1()
 	//Enumeration1()
-	Enumeration2()
+	//Enumeration2()
 
+	//if1()
+	if2()
 }
 
 func Variable2() {
@@ -76,4 +78,64 @@ func Enumeration3() {
 		THREE
 		FOUR
 	)
+}
+
+func if1() {
+	//if 문은 반드시 true로 검사하기
+	//소괄호를 사용하지 않는다
+
+	var a int = 20
+	b := 20
+
+	if a >= 15 {
+		fmt.Println("a는 15이상이다")
+	}
+
+	if b < 15 {
+		fmt.Println("b는 15이하이다")
+
+	}
+
+	/*	//에러 발생 1
+		if b > 15
+		{
+			fmt.Println("~~")
+		}*/
+
+	/*	if error2 := 1; error2=1{
+			//에러 발생 2
+			에러입니다!!!
+		}
+	*/
+	// 짧은 선언 후 쓰기
+	if c := 1; c == 1 {
+		fmt.Println("c는 1 입니다")
+	}
+
+}
+
+func if2() {
+	var a int = 50
+	b := 70
+
+	if a > 65 {
+		fmt.Println("65 이상")
+	} else if a < 30 && b > 40 {
+		fmt.Println("30 이하")
+	} else {
+		fmt.Println("50 입니다.")
+	}
+
+	/*
+		else 도 마찬가지로
+
+		else
+		{
+		}
+
+		이렇게 하면 에러가 생긴다.
+
+		go는 하나의 문장 끝마다 ;
+		를 붙이기때문이다.
+	*/
 }
