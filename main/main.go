@@ -6,6 +6,7 @@ import (
 	"go_study/main/lib2"
 	"math/rand"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -34,8 +35,13 @@ func main() {
 	//initTest()
 
 	//typeSection()
-	stringTest()
+	//stringTest()
+	//arrayTest2()
+	//slice2()
+	//slice3()
+	//slice4()
 
+	mapUseAge2()
 }
 
 func initTest() {
@@ -321,4 +327,157 @@ func stringTest() {
 	strSet = append(strSet, str2)
 
 	fmt.Println(strings.Join(strSet, " "))
+}
+
+func arrayTest() {
+
+	var arr1 [5]int = [5]int{1, 2, 3, 4, 5}
+	var arr2 [5]string = [5]string{"a", "b", "c", "d", "e"}
+
+	for i := 0; i < len(arr1); i++ {
+		fmt.Println("arr1: ", arr1[i])
+	}
+
+	for index, value := range arr1 {
+		fmt.Print("\nindex: ", index, " value: ", value)
+	}
+
+	for _, value := range arr2 {
+		fmt.Print("\nvalue: ", value)
+	}
+
+	for index := range arr2 {
+		fmt.Print("\nvalue: ", index)
+	}
+
+}
+
+func arrayTest2() {
+	var arr1 [5]int = [5]int{1, 2, 3, 4, 5}
+	arr2 := arr1
+
+	fmt.Printf(" arr1: %p, arr2: %p\n", &arr1, &arr2)
+	fmt.Printf(" arr1: %p, %v, arr2: %p, %v\n", &arr1, arr1, &arr2, arr2)
+}
+
+func slice1() {
+	var slice1 []int
+	slice2 := []int{}
+	slice3 := []int{1, 2, 3, 4, 5}
+	slice4 := [][]int{
+		{1, 2, 3, 4, 5},
+		{6, 7, 8, 9, 10},
+	}
+	slice3[4] = 10
+	fmt.Printf("%-5T %d %d %v\n", slice1, len(slice1), cap(slice1), slice1)
+	fmt.Printf("%-5T %d %d %v\n", slice2, len(slice2), cap(slice2), slice2)
+	fmt.Printf("%-5T %d %d %v\n", slice3, len(slice3), cap(slice3), slice3)
+	fmt.Printf("%-5T %d %d %v\n", slice4, len(slice4), cap(slice4), slice4)
+
+	var slice5 []int = make([]int, 5, 10)
+	slice6 := make([]int, 5)
+	slice7 := make([]int, 5, 10)
+	slice8 := make([]int, 5)
+
+	slice6[2] = 7
+	fmt.Printf("%-5T %d %d %v\n", slice5, len(slice5), cap(slice5), slice5)
+	fmt.Printf("%-5T %d %d %v\n", slice6, len(slice6), cap(slice6), slice6)
+	fmt.Printf("%-5T %d %d %v\n", slice7, len(slice7), cap(slice7), slice7)
+	fmt.Printf("%-5T %d %d %v\n", slice8, len(slice8), cap(slice8), slice8)
+
+}
+
+func slice2() {
+
+	arr1 := [5]int{1, 2, 3, 4, 5}
+	arr2 := arr1
+	fmt.Printf(" arr1: %p, %v\n", &arr1, arr1)
+	fmt.Printf(" arr2: %p, %v\n", &arr2, arr2)
+
+	println()
+	slice1 := make([]int, 5, 10)
+	slice2 := slice1
+
+	slice1[2] = 7
+
+	fmt.Printf("slice1: %p, %v", slice1, slice1)
+	println()
+	fmt.Printf("slice2: %p, %v", slice2, slice2)
+}
+
+func slice3() {
+	arr := make([]int, 0, 5)
+	for i := 0; i < 15; i++ {
+		arr = append(arr, i)
+		fmt.Printf("len: %d, cap: %d, %v\n", len(arr), cap(arr), arr)
+	}
+
+	//만약 용량에서 벗어나면 용량의 2배를 한 만큼 용량이 늘어난다. -> 용량을 처음 할당할때 주의!
+}
+
+func slice4() {
+	slice1 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	//slice3 := []string{"a", "b", "c", "d", "e"}
+	fmt.Println(slice1[:])
+	slice2 := []int{3, 6, 10, 9, 2, 7, 5, 8, 4, 1}
+	fmt.Println(sort.IntsAreSorted(slice2))
+	sort.Ints(slice2)
+	fmt.Println(slice2)
+
+	c := [5]int{1, 2, 3, 4, 5}
+	var d []int = make([]int, 5, 10)
+	d = c[:]
+	d = append(d, 0) // 인덱스 5
+	d = append(d, 7) // 이제 인덱스 6에 7을 추가
+
+	c[0] = 100
+	fmt.Println(c)
+	fmt.Println(d)
+
+	e := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	f := e[0:5:7]
+	fmt.Println("e: ", len(e), cap(e), e)
+	fmt.Println("f: ", len(f), cap(f), f)
+
+	f = append(f, 11, 12, 13)
+	fmt.Println("e: ", len(e), cap(e), e)
+	fmt.Println("f: ", len(f), cap(f), f)
+}
+
+func mapUseAge() {
+
+	map5 := map[string]int{
+		"apple":  1,
+		"banana": 2,
+		"orange": 3,
+	}
+
+	for key, value := range map5 {
+		fmt.Println("key: ", key, "value: ", value)
+	}
+
+}
+
+func mapUseAge2() {
+	map1 := map[string]string{
+		"naver":  "https://www.naver.com",
+		"daum":   "https://www.daum.net",
+		"google": "https://www.google.com",
+		"yahoo":  "",
+	}
+
+	value1, isExist := map1["naver"]
+	value2, isExist2 := map1["daum"]
+	value3, isExist3 := map1["google"]
+	value4, isExist4 := map1["kakao"]
+	value5, isExist5 := map1["yahoo"]
+	fmt.Println("value1: ", value1, "isExist: ", isExist)
+	fmt.Println("value2: ", value2, "isExist: ", isExist2)
+	fmt.Println("value3: ", value3, "isExist: ", isExist3)
+	fmt.Println("value4: ", value4, "isExist: ", isExist4)
+	fmt.Println("value5: ", value5, "isExist: ", isExist5)
+
+	if value1, isExist := map1["naver"]; isExist {
+		fmt.Println("value1: ", value1, "isExist: ", isExist)
+	}
 }
