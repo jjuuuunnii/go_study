@@ -6,12 +6,14 @@ import (
 	"go_study/main/lib2"
 	"math/rand"
 	"os"
+	"strings"
 )
 
 /**
  * init 함수 실행 시 import 된 패키지의 init 함수가 먼저 실행된다.
  * init 함수는 패키지가 로드되면서 가장 먼저 실행되는 함수이다.
  */
+
 func main() {
 	//fmt.Println("hello")
 
@@ -29,7 +31,11 @@ func main() {
 
 	//packageUseage()
 	//packageUseage2()
-	initTest()
+	//initTest()
+
+	//typeSection()
+	stringTest()
+
 }
 
 func initTest() {
@@ -273,4 +279,46 @@ func packageUseage2() {
 func init() {
 	fmt.Println("init start")
 	fmt.Println("init end")
+}
+
+func typeSection() {
+	var b1 bool = true
+	//var str1 string = "안녕하세요."
+	//var str1 string = `c:\go_study\src\go_study\main\main.go`
+	if &b1 != nil {
+		fmt.Println("b1: ", b1)
+	}
+
+	//fmt.Println("str1 length: ", utf8.RuneCountInString(str1))
+
+	var str1 string = "Golang"
+	var str2 string = "World"
+	var str3 string = "고프로그래밍"
+
+	fmt.Println("str1: ", rune(str1[0]), str1[1], str1[2], str1[3], str1[4], str1[5])
+	fmt.Println("str2: ", str2[0], str2[1], str2[2], str2[3], str2[4])
+	fmt.Println("str3: ", str3[0], str3[1], str3[2], str3[3], str3[4], str3[5])
+
+	for i, r := range str1 {
+		fmt.Println("index: ", i, "value: ", string(r))
+
+	}
+
+	constStr := []rune(str3)
+	for i, r := range constStr {
+		fmt.Printf("index: %d, value: %d\n", i, r)
+	}
+}
+
+func stringTest() {
+	var str1 string = "The Go Programming Language"
+	var str2 string = "is an open source programming language"
+	var str3 string = str1 + " " + str2
+
+	fmt.Println(str3)
+	var strSet []string
+	strSet = append(strSet, str1)
+	strSet = append(strSet, str2)
+
+	fmt.Println(strings.Join(strSet, " "))
 }
